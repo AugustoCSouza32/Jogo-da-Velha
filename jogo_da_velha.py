@@ -12,12 +12,44 @@ def valida_entrada(entrada: str) -> tuple[int, int] | None:
         print("Entrada Inválida: Os caracteres devem ser números.")
         return None
 
+# Função que cria a matriz, valida a posição da jogada e insere o valor no tabuleiro.
+# Retorna a matriz com os valores inseridos, retorna se a posição é inválida.
+def insere_jogada(lin:int, col:int,jogador:str):
+    matriz_tabuleiro: list[list[str | None]] = [[None for c in range(3)] for l in range(3)]
 
+    if matriz_tabuleiro[lin][col] is not None:
+        print("Posição oculpada! Tente outra casa.")
+        return None
+    else:
+        matriz_tabuleiro[lin][col] = jogador
+        return matriz_tabuleiro
 
+# Função que verifica qual é o jogador e alterna as jogadas.
+def trocar_jogador(jogador:str):
+    if jogador == 'X':
+        return 'O'
+    else:
+        return 'X'
 
+# Função que vincula o jogador com a peça dele no jogo.
+def jogadores (jogador_1:str, jogador_2:str, jogador:str):
+    jogador_x = jogador_1
+    jogador_o = jogador_2
 
+    if jogador == 'X':
+        return jogador_x
+    else:
+        return jogador_o
+
+# Função que verifica a vitória ou empate
+def verifica_vitoria(tabuleiro:list[list[str|None]]):
+    cont_x = 0
+    cont_o = 0
+
+    for col in range(3):
+        for lin in range(3):
 #Jogo roda aqui
-matriz_tabuleiro: list[str] = [['a' for col in range(3)] for lin in range(3)]
+
 
 while True:
     entrada = input("Informe a posição que quer jogar: [lin][col]: ")
