@@ -45,12 +45,23 @@ def jogadores (jogador_1:str, jogador_2:str, jogador:str):
 def verifica_vitoria(tabuleiro:list[list[str|None]]):
     cont_x = 0
     cont_o = 0
+    vitoria = False
+    for lin in range(3):
+        for col in range(3):
+            if tabuleiro[lin][col] == 'X':
+                cont_x += 1
+            elif tabuleiro[lin][col] == 'O':
+                cont_o += 1
+        if cont_x == 3:
+            vitoria = True
+            return lin, vitoria
+        
+        cont_x = 0
+        cont_o = 0
+             
 
-    for col in range(3):
-        for lin in range(3):
+             
 #Jogo roda aqui
-
-
 while True:
     entrada = input("Informe a posição que quer jogar: [lin][col]: ")
     valida = valida_entrada(entrada)
